@@ -32,10 +32,6 @@ namespace Login_System
 					{
 						String username = userPass[0].ToLower();
 						String password = userPass[1];
-
-
-					
-					
 						if (userName.Equals(username) && password.Equals(passWord))
 						{
 							Console.WriteLine("lOGGED IN SUCCESSFULLY");
