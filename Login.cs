@@ -11,10 +11,13 @@ namespace Login_System
         public void loginUser()
         {
             Console.WriteLine("Enter Username");
-            
             string userName=Console.ReadLine();
+            Console.WriteLine(userName);
             Console.WriteLine("Enter Password");
             string passWord = Console.ReadLine();
+            Console.WriteLine(passWord);
+
+
 
         }
     }
