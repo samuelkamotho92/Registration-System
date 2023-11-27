@@ -14,9 +14,8 @@ namespace Login_System
             string userName=Console.ReadLine().ToLower();
             Console.WriteLine(userName);
             Console.WriteLine("Enter Password");
-            string passWord = Console.ReadLine();
+            string passWord = Console.ReadLine().ToLower();
             Console.WriteLine(passWord);
-
 			/*READ USERS FROM .TXT FILE*/
 			/*check if i file exist*/
 			string path = @"C:\\Test";
@@ -24,7 +23,6 @@ namespace Login_System
 			if (File.Exists(pathFile))
             {
                 String[] allUsers= File.ReadAllLines(pathFile);
-
                 foreach (String user in allUsers)
                 {
                     string[] userPass= user.Split(":");
@@ -37,7 +35,6 @@ namespace Login_System
 							Console.WriteLine("lOGGED IN SUCCESSFULLY");
 							Console.WriteLine("WELCOME " + userName);
 								break;
-
 						}
 						else
 						{
@@ -45,23 +42,9 @@ namespace Login_System
 								loginUser();
 
 						}
-
-
-
-
 				}
-
-
-
-
 			}
-
 			}
-
-
-
-
-
 		}
 	}
 }

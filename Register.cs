@@ -10,7 +10,7 @@ namespace Registration_System
     public class Register
     {
 
-        public bool checkUser(string userVal)
+        public void checkUser(string userVal)
         {
             string path = @"C:\\Test";
             string pathFile = @$"{path}\formOne.txt";
@@ -18,24 +18,18 @@ namespace Registration_System
             {
                 String[] allUsers = File.ReadAllLines(pathFile);
                 string[] finalArray = allUsers.Skip(1).ToArray();
-
                 foreach (String user in finalArray)
                 {
                     string[] userPass = user.Split(":");
-                    if (userPass.Length < 1)
-                    {
-                        String userName = userPass[0].ToLower();
-                        if(userVal == userName)
-                        {
-                            Console.WriteLine("Check user");
-                            return true;
-
-                        }
+                    String userName = userPass[0].ToLower();
+                    if (userName.Equals(userVal))
+                    {                       
+                        Console.WriteLine("User does exist,enter unique name");
+                        RegisterUser();
+                        break;
                     }
                 }
             }
-            Console.WriteLine("Check user null");
-            return false;
         }
         public void RegisterUser()
         {
@@ -45,15 +39,7 @@ namespace Registration_System
             if(userName.Length > 0)
             {
                 Console.WriteLine($"Entered {userName}");
-
-        bool isExists =  checkUser(userName);
-                if (isExists)
-                {
-                    Console.WriteLine("UserName exists");
-                    RegisterUser();
-                }
-
-
+                checkUser(userName);
                 Console.WriteLine("Enter Password");
                 string password = Console.ReadLine().ToLower();
                 if(password.Length >= 8) {
@@ -66,7 +52,6 @@ namespace Registration_System
                     if (File.Exists(pathFile))
                     {
                         File.AppendAllText(pathFile,$"\n{userName}:{password}" );
-
                     }
                     else
                     {
@@ -74,25 +59,16 @@ namespace Registration_System
                         File.WriteAllText(pathFile, $"\n{userName}:{password}");
                     }
                 }
+                else
+                {
+                    Console.WriteLine("Passowrd Length must be 8 and greater");
+                    RegisterUser();
+                }
             } else
             {
                 Console.WriteLine("UserName cannot be empty");
+                RegisterUser();
             }
-
-         /*   string userName = Console.ReadLine().ToLower();
-            string password = Console.ReadLine().ToLower();
-            if (userName.Length > 0 && password.Length > 8)
-            {
-                Console.WriteLine(userName);
-                Console.WriteLine(password);
-            }
-            else if(userName.Length == 0)
-            {
-                Console.WriteLine("UserName can't be Empty");
-            }else if(password.Length < 8)
-            {
-                Console.WriteLine("Passowrd Length must be 8 and greater");
-            }*/
         }
     }
 }
