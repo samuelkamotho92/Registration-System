@@ -16,9 +16,8 @@ namespace Registration_System
             string pathFile = @$"{path}\formOne.txt";
             if (File.Exists(pathFile))
             {
-                String[] allUsers = File.ReadAllLines(pathFile);
-                string[] finalArray = allUsers.Skip(1).ToArray();
-                foreach (String user in finalArray)
+                String[] allUsers = File.ReadAllLines(pathFile);         
+                foreach (String user in allUsers)
                 {
                     string[] userPass = user.Split(":");
                     String userName = userPass[0].ToLower();
@@ -55,8 +54,7 @@ namespace Registration_System
                     }
                     else
                     {
-                        File.Create(pathFile);
-                        File.WriteAllText(pathFile, $"\n{userName}:{password}");
+                        File.WriteAllText(pathFile, $"{userName}:{password}");
                     }
                 }
                 else
