@@ -12,6 +12,10 @@ namespace Registration_System
         private string descriptions { get; set; }
 
         private string bookName { get; set; }
+
+        private string path = @"C:\\Test";
+        private string pathFile = @$"{path}\books.txt";
+
         public Books()
         {
 
@@ -34,8 +38,7 @@ namespace Registration_System
 
             //Save to book.txt
             //path
-            string path = @"C:\\Test";
-            string pathFile = @$"{path}\books.txt";
+            
             if (File.Exists(pathFile))
             {
                 string[] allBooks = File.ReadAllLines(pathFile);
@@ -51,6 +54,24 @@ namespace Registration_System
 
     
         }
-        //Buy book user
+        //Display books
+        public void displayBooks()
+        {
+            string[] booksExisting = File.ReadAllLines(pathFile);
+
+            foreach(string book in booksExisting )
+            {
+                string[] bookDetails = book.split(":");
+
+
+                Console.WriteLine($"{bookDetails[0]} {bookDetails[1]}");
+            }
+            
+
+        }
+
+
+
+
     }
 }
