@@ -14,7 +14,7 @@ namespace Registration_System
         private string bookName { get; set; }
 
         private string path = @"C:\\Test";
-        private string pathFile = @$"{path}\books.txt";
+        private string pathFile = @$"C:\\Test\books.txt";
 
         public Books()
         {
@@ -55,18 +55,29 @@ namespace Registration_System
     
         }
         //Display books
-        public void displayBooks()
+        public void displayBooks(String userId)
         {
             string[] booksExisting = File.ReadAllLines(pathFile);
 
             foreach(string book in booksExisting )
             {
-                string[] bookDetails = book.split(":");
+                string[] bookDetails = book.Split(":");
+                String bookID = bookDetails[0];
 
 
-                Console.WriteLine($"{bookDetails[0]} {bookDetails[1]}");
+				Console.WriteLine($"{bookDetails[0]} {bookDetails[1]}");
+
             }
-            
+
+
+
+            Console.WriteLine("SELECT A BOOK YOU WANT TO BUY: ");
+            String userChoice = Console.ReadLine();
+
+            Console.WriteLine($"BookId {userChoice} userID {userId}");
+
+            Orders order =new Orders(int.Parse(userId), int.Parse(userChoice));
+            order.buyBook();
 
         }
 

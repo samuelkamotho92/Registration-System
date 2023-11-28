@@ -24,18 +24,28 @@ namespace Login_System
                 String[] allUsers= File.ReadAllLines(pathFile);
 				Console.WriteLine(allUsers);
 				String userCredential = $"{userName}:{passWord}";
-		 bool isExists = Array.Exists(allUsers, element => element.Contains(userCredential));
-		       if (isExists)
+		 String userDetails = Array.Find(allUsers, element => element.Contains(userCredential));
+		       if (userDetails!=null)
 				{
+					String userID = userDetails.Split(":")[0];
+					Books b = new Books();
+
+
 					if (userName.Equals("admin"))
 					{
-                        Books b = new Books();
-                        b.createBook();
+						b.createBook();
+
+
+						/*user details*/
+						/*String activeUser=*/
+
 					}
 					else
 					{
                         Console.WriteLine("Only Admins Are Allowed");
-                    }
+
+						b.displayBooks(userID);
+					}
                 }
 				else
 				{
