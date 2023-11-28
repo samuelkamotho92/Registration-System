@@ -34,7 +34,7 @@ namespace Registration_System
         {
             //Allow user to enter details
             Console.WriteLine("Enter UserName");
-            string userName = Console.ReadLine();
+            string userName = Console.ReadLine().ToLower();
             if(userName.Length > 0)
             {
                 Console.WriteLine($"Entered {userName}");
@@ -50,11 +50,26 @@ namespace Registration_System
                     string pathFile = @$"{path}\formOne.txt";
                     if (File.Exists(pathFile))
                     {
-                        File.AppendAllText(pathFile,$"\n{userName}:{password}" );
+                        //Incremrnt
+                        //Read file
+                     string [] users = File.ReadAllLines(pathFile);
+                        //users registerd
+                        int usersReg = users.Length;
+                        usersReg++;
+                        File.AppendAllText(pathFile,$"\n{usersReg}:{userName}:{password}" );
                     }
                     else
                     {
-                        File.WriteAllText(pathFile, $"{userName}:{password}");
+                        string adminName = "admin";
+                        string adminPassword = "admin1234";
+                        string id = "1";
+                       
+                        File.WriteAllText(pathFile, $"{id}:{adminName}:{adminPassword}");
+                        string[] users = File.ReadAllLines(pathFile);
+                        //users registerd
+                        int usersReg = users.Length;
+                        usersReg++;
+                        File.AppendAllText(pathFile, $"\n{usersReg}:{userName}:{password}");
                     }
                 }
                 else

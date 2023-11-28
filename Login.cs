@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Registration_System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,8 @@ namespace Login_System
         {
             Console.WriteLine("Enter Username");
             string userName=Console.ReadLine().ToLower();
-            Console.WriteLine(userName);
             Console.WriteLine("Enter Password");
             string passWord = Console.ReadLine().ToLower();
-            Console.WriteLine(passWord);
 			/*READ USERS FROM .TXT FILE*/
 			/*check if i file exist*/
 			string path = @"C:\\Test";
@@ -23,27 +22,26 @@ namespace Login_System
 			if (File.Exists(pathFile))
             {
                 String[] allUsers= File.ReadAllLines(pathFile);
-                foreach (String user in allUsers)
-                {
-                    string[] userPass= user.Split(":");
-					if (userPass.Length > 1)
+				Console.WriteLine(allUsers);
+				String userCredential = $"{userName}:{passWord}";
+		 bool isExists = Array.Exists(allUsers, element => element.Contains(userCredential));
+		       if (isExists)
+				{
+					if (userName.Equals("admin"))
 					{
-						String username = userPass[0].ToLower();
-						String password = userPass[1];
-						if (userName.Equals(username) && password.Equals(passWord))
-						{
-							Console.WriteLine("lOGGED IN SUCCESSFULLY");
-							Console.WriteLine("WELCOME " + userName);
-								break;
-						}
-						else
-						{
-								Console.WriteLine("WRONG USERNAME OR PASSWORD");
-								loginUser();
-
-						}
-				}
-			}
+                        Books b = new Books();
+                        b.createBook();
+					}
+					else
+					{
+                        Console.WriteLine("Only Admins Are Allowed");
+                    }
+                }
+				else
+				{
+                    Console.WriteLine("WRONG USERNAME OR PASSWORD");
+                    loginUser();
+                }
 			}
 		}
 	}
