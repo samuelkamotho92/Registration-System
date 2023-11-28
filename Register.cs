@@ -5,7 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
+
 namespace Registration_System
+   
 {
     public class Register
     {
@@ -20,7 +24,7 @@ namespace Registration_System
                 foreach (String user in allUsers)
                 {
                     string[] userPass = user.Split(":");
-                    String userName = userPass[0].ToLower();
+                    String userName = userPass[1].ToLower();
                     if (userName.Equals(userVal))
                     {                       
                         Console.WriteLine("User does exist,enter unique name");
@@ -42,7 +46,7 @@ namespace Registration_System
                 Console.WriteLine("Enter Password");
                 string password = Console.ReadLine().ToLower();
                 if(password.Length >= 8) {
-                    Console.WriteLine($"Entered Details {userName} ${password}");
+                    Console.WriteLine($"Entered Details userName:{userName} password: {password}");
                     //Create Directorty
                     string path = @"C:\\Test";
                     Directory.CreateDirectory(path);
@@ -57,6 +61,10 @@ namespace Registration_System
                         int usersReg = users.Length;
                         usersReg++;
                         File.AppendAllText(pathFile,$"\n{usersReg}:{userName}:{password}" );
+
+                        Console.WriteLine("Enter Your details to Login Now");
+                        Login_System.Login loginNewUser = new Login_System.Login();
+                        loginNewUser.loginUser();
                     }
                     else
                     {
@@ -74,7 +82,7 @@ namespace Registration_System
                 }
                 else
                 {
-                    Console.WriteLine("Passowrd Length must be 8 and greater");
+                    Console.WriteLine("Password Length must be 8 and greater");
                     RegisterUser();
                 }
             } else

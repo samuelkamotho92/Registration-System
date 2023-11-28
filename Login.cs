@@ -16,7 +16,7 @@ namespace Login_System
             Console.WriteLine("Enter Password");
             string passWord = Console.ReadLine().ToLower();
 			/*READ USERS FROM .TXT FILE*/
-			/*check if i file exist*/
+			/*check if a file exist*/
 			string path = @"C:\\Test";
 			string pathFile = @$"{path}\formOne.txt";
 			if (File.Exists(pathFile))
@@ -42,9 +42,11 @@ namespace Login_System
 					}
 					else
 					{
-                        Console.WriteLine("Only Admins Are Allowed");
+                        //Console.WriteLine("Only Admins Are Allowed");
 
 						b.displayBooks(userID);
+						Console.WriteLine("\n");
+
 					}
                 }
 				else
