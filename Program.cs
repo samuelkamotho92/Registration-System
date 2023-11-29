@@ -1,5 +1,18 @@
-﻿using Login_System;
+﻿
+
+
 using Registration_System;
+using Registration_System.Service;
+
+UserService userVal = new UserService();
+await userVal.GetUsers();
+Register userOne = new Register();
+await userOne.RegisterUser();
+/*    member.loginUser();*/
+
+/*using Login_System;
+using Registration_System;
+using Registration_System.Service;
 
 Register userOne = new Register();
 Login member = new Login();
@@ -15,14 +28,16 @@ string userInput = Console.ReadLine();
 int userChoice = int.Parse(userInput);
 if (userChoice == 0)
 {
-    member.loginUser();
+ *//*   UserService userVal = new UserService();
+    userVal.GetUsers();*/
+/*    member.loginUser();*//*
 }
 else if (userChoice == 1)
 {
-    userOne.RegisterUser();
+  *//*  userOne.RegisterUser();*//*
 }
 else
 {
-    Console.WriteLine("Wrong Input Selected");
+*//*    Console.WriteLine("Wrong Input Selected");*//*
 }
-/*userOne.RegisterUser();*/
+*//*userOne.RegisterUser();*/

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Registration_System.Model;
+using Registration_System.Service;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,7 +32,7 @@ namespace Registration_System
                 }
             }
         }
-        public void RegisterUser()
+        public async Task<string>  RegisterUser()
         {
             //Allow user to enter details
             Console.WriteLine("Enter UserName");
@@ -57,13 +59,24 @@ namespace Registration_System
                         int usersReg = users.Length;
                         usersReg++;
                         File.AppendAllText(pathFile,$"\n{usersReg}:{userName}:{password}" );
+                        User user = new User();
+                        user.userName = userName;
+                        user.password = password;
+                        user.Id = usersReg;
+                        UserService userService = new UserService();
+                       await userService.AddUser(user);
                     }
                     else
                     {
                         string adminName = "admin";
                         string adminPassword = "admin1234";
                         string id = "1";
-                       
+                        User user= new User();
+                        user.userName = userName;
+                        user.password = password;
+                        user.Id = 1;
+                        UserService userService = new UserService();
+                       await userService.AddUser(user);                   
                         File.WriteAllText(pathFile, $"{id}:{adminName}:{adminPassword}");
                         string[] users = File.ReadAllLines(pathFile);
                         //users registerd
@@ -82,6 +95,7 @@ namespace Registration_System
                 Console.WriteLine("UserName cannot be empty");
                 RegisterUser();
             }
+            return "value";
         }
     }
 }

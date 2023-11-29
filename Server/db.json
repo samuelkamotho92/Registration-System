@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "userName": "userOne",
+      "password": "test1234"
+    },
+    {
+      "id": 2,
+      "userName": "userTwo",
+      "password": "test1234"
+    },
+    {
+      "Id": 1,
+      "userName": "david",
+      "password": "testdavid",
+      "id": 3
+    },
+    {
+      "Id": 1,
+      "userName": "mmmmmm",
+      "password": "mmmmmmjujjj",
+      "id": 4
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "name": "some comment",
+      "description": "test "
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "bookId": 1
+    }
+  ]
+}
