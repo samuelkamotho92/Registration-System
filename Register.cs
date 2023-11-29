@@ -62,6 +62,8 @@ namespace Registration_System
                         usersReg++;
                         File.AppendAllText(pathFile,$"\n{usersReg}:{userName}:{password}" );
 
+                        Console.WriteLine("Registered successfully,proceed below to login");
+
                         Console.WriteLine("Enter Your details to Login Now");
                         Login_System.Login loginNewUser = new Login_System.Login();
                         loginNewUser.loginUser();
