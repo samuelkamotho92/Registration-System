@@ -3,11 +3,15 @@
 
 using Registration_System;
 using Registration_System.Service;
+using Login_System;
 
 UserService userVal = new UserService();
-await userVal.GetUsers();
+//await userVal.GetUsers();
 Register userOne = new Register();
-await userOne.RegisterUser();
+//await userOne.RegisterUser();
+
+Login existinguser = new Login();
+await existinguser.LoginUser();
 /*    member.loginUser();*/
 
 /*using Login_System;

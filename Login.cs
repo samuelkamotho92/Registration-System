@@ -1,7 +1,11 @@
 ﻿using Registration_System;
+using Registration_System.Model;
+using Registration_System.Service;
+using Registration_System.Service.IService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,21 +67,51 @@ namespace Login_System
             string userName = Console.ReadLine().ToLower();
             Console.WriteLine("Enter Password");
             string password = Console.ReadLine().ToLower();
-            if (userName.Length > 0 && password.Length > 0)
+            if (userName.Length > 0 && password.Length > 0 )
             {
-                
-                User user = new User();
 
-                user.userName = userName;
-                user.password = password;
+               // User user = new User();
+
+                
 
                 UserService userService = new UserService();
-                await userService.GetUser(user.userName);
-                if(user.userName==userName && user.password==password)
-                {
-                    return "Logged in successfully";
-                }
+                List<User> members=await userService.GetUsers();
 
+                User  member = members.Find(x => x.userName.ToLower() == userName && x.password == password);
+                Console.WriteLine(member);
+                if(member != null)
+                {
+                    if (member.userName == "userOne")
+                    {
+                        Console.WriteLine("add a book");
+                        Books book = new Books();
+                        await book.createBook();
+                    }
+                    else
+                    {
+                        Console.WriteLine("SELECTA BOOK YOU WANT TO ORDER:");
+                        BookService bookService = new BookService();
+                        await bookService.GetBooks();
+                        Console.WriteLine("OPTION: ");
+
+                        String user_choice = Console.ReadLine();
+
+                        OrderService orderService = new OrderService();
+                        Order order = new Order();
+                        order.bookId = user_choice;
+                        order.userId = $"{member.Id}";
+                        await orderService.AddOrders(order);
+                       
+
+
+                    }
+                    
+                }
+                else
+                {
+                    Console.Write("no user found");
+                }
+                return "user is not registered";
                 
             }
             else

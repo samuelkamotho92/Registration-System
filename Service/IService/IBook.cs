@@ -13,7 +13,7 @@ namespace Registration_System.Service.IService
 
         Task<Book> GetBooksAsync(int id);
 
-        Task<string> AddBook(Book book);
+        Task<string> AddBook(AddBook book);
 
 
         

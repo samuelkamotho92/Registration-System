@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Registration_System.Model;
+using Registration_System.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,13 +30,18 @@ namespace Registration_System
 
         }
         //Add book admin
-        public void createBook()
+        public async Task createBook()
         {
             Console.WriteLine("Enter Book name");
             string bookName = Console.ReadLine();
             Console.WriteLine("Enter Book Description");
             string descriptions = Console.ReadLine();
-            Books boks=new Books(1, descriptions , bookName);
+            AddBook book = new AddBook();
+            book.name = bookName;
+            book.description = descriptions;
+            BookService serviceB=new BookService();
+            await serviceB.AddBook(book);
+           
 
             //Save to book.txt
             //path

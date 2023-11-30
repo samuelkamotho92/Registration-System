@@ -39,14 +39,34 @@ namespace Registration_System.Service
             return "";
         }
 
-        public Task<User> GetUser(int id)
+        public async Task<User> GetUser(string userName)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync(URL+ $"/{userName}");
+            Console.WriteLine(response);
+
+
+            //string
+            var content = await response.Content.ReadAsStringAsync();
+            
+            //convert JSON string to object
+            var user = JsonConvert.DeserializeObject<User>(content);
+
+            if (response.IsSuccessStatusCode && userName != null)
+            {
+                Console.WriteLine(user);
+            }
+            else
+            {
+                Console.WriteLine("error occured");
+            }
+            return user;
         }
+
+   
 
         public async Task<List<User>> GetUsers()
         {
-            Console.WriteLine("klk");
+            //Console.WriteLine("klk");
 
             //responce
             var resp = await _httpClient.GetAsync(URL);
@@ -59,10 +79,7 @@ namespace Registration_System.Service
             var users = JsonConvert.DeserializeObject<List<User>>(content);
             if (resp.IsSuccessStatusCode && users != null)
             {
-                foreach (var user in users)
-                {
-                 Console.WriteLine(user.userName);                
-                }
+                return users;
             }
             else
             {

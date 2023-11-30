@@ -21,6 +21,18 @@
       "userName": "mmmmmm",
       "password": "mmmmmmjujjj",
       "id": 4
+    },
+    {
+      "Id": 9,
+      "userName": "martin",
+      "password": "test1234",
+      "id": 5
+    },
+    {
+      "Id": 10,
+      "userName": "martin",
+      "password": "test1234",
+      "id": 6
     }
   ],
   "books": [
@@ -28,6 +40,11 @@
       "id": 1,
       "name": "some comment",
       "description": "test "
+    },
+    {
+      "name": "Javaaaa",
+      "description": "good book",
+      "id": 2
     }
   ],
   "orders": [
@@ -35,6 +52,11 @@
       "id": 1,
       "userId": 1,
       "bookId": 1
+    },
+    {
+      "userId": "2",
+      "bookId": "2",
+      "id": 2
     }
   ]
 }

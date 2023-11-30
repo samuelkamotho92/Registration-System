@@ -10,7 +10,7 @@ namespace Registration_System.Service.IService
     internal interface IUser
     {
         Task<List<User>> GetUsers();
-        Task<User> GetUser(int id);
+        Task<User> GetUser(string userName);
 
         Task<string> AddUser(User user);
     }
