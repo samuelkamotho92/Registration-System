@@ -12,10 +12,14 @@ await userOne.RegisterUser();*/
 
 
 /*=========================ORDERS======================================================*/
+using Registration_System;
 using Registration_System.Service;
 
 OrderService orderService = new OrderService();
 await orderService.GetOrders();
+
+OrdersController ordersController = new OrdersController();
+await ordersController.buyBook();
 
 
 

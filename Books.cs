@@ -76,7 +76,7 @@ namespace Registration_System
 
             Console.WriteLine($"BookId {userChoice} userID {userId}");
 
-            Orders order =new Orders(int.Parse(userId), int.Parse(userChoice));
+            OrdersController order =new OrdersController(int.Parse(userId), int.Parse(userChoice));
             order.buyBook();
 
         }

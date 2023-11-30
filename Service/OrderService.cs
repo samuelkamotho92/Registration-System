@@ -4,6 +4,7 @@ using Registration_System.Service.IService;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Registration_System.Service
@@ -19,10 +20,21 @@ namespace Registration_System.Service
 			_httpClient = new HttpClient();
 		}
 
-		public async Task<string> AddOrders(Order orders)
+		public async Task<string> AddOrders(Order order)
 		{
-			// Implement the logic to add orders
-			throw new NotImplementedException();
+
+			var content = JsonConvert.SerializeObject(order);
+			var body = new StringContent(content, Encoding.UTF8, "application/json");
+			var response = await _httpClient.PostAsync(URL, body);
+			Console.WriteLine(response);
+			if (response.IsSuccessStatusCode)
+			{
+				return "Order Added Successfully.Thank you";
+			}else
+			{
+				return "Server Error,Please Try Again Later";
+
+			}
 		}
 
 		public async Task<Order> GetOrder(int id)
