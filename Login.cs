@@ -53,6 +53,39 @@ namespace Login_System
                     loginUser();
                 }
 			}
-		}
-	}
+            
+
+        }
+        public async Task<string> LoginUser()
+
+        {
+            Console.WriteLine("Enter Username");
+            string userName = Console.ReadLine().ToLower();
+            Console.WriteLine("Enter Password");
+            string password = Console.ReadLine().ToLower();
+            if (userName.Length > 0 && password.Length > 0)
+            {
+                
+                User user = new User();
+
+                user.userName = userName;
+                user.password = password;
+
+                UserService userService = new UserService();
+                await userService.GetUser(user.userName);
+                if(user.userName==userName && user.password==password)
+                {
+                    return "Logged in successfully";
+                }
+
+                
+            }
+            else
+            {
+                return "";
+            }
+
+
+        }
+    }
 }
