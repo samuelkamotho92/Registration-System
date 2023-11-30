@@ -28,7 +28,6 @@ namespace Registration_System.Service
         public async Task<List<Book>> GetBooks()
         {
 			var resp = await _httpClient.GetAsync(URL);
-			Console.WriteLine(resp);
 
 			var content = await resp.Content.ReadAsStringAsync();
 			var bookList = JsonConvert.DeserializeObject<List<Book>>(content);
